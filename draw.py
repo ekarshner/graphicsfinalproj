@@ -127,24 +127,10 @@ def generate_pyramid(numsides, sidelength, height):
             radius *= -1
     print radius
 
-    #adding first base point to pointlist
-    #pntlist[0][0] = radius
-    #pntlist[0][2] = 0
-
-    #adds opposite point from start if even number of sides
-    #if (numsides % 2 == 0):
-        #pntlist[numsides / 2][0] = radius * -1
-        #pntlist[numsides / 2][2] = 0
-
-    #print "initial pointlist"
-    #print pntlist
-
     k = 0
     totaltheta = 0
     #calculate and add base points to pointlist
     while totaltheta < (360):
-        #print totaltheta
-        #if totaltheta <= 90:
         temptheta = math.pi / 180 * totaltheta
         tempx = sin(temptheta) * radius
         tempz = cos(temptheta) * radius
@@ -152,33 +138,11 @@ def generate_pyramid(numsides, sidelength, height):
         pntlist[k][2] = tempz
         totaltheta += theta
         k += 1
-        #pntlist[numsides - k][0] = tempx
-        #pntlist[numsides - k][2] = tempz * -1
-            #print "added vertex 1"
-            #print pntlist
-
-        #elif totaltheta == 90:
-            #pntlist[k][0] = 0
-            #pntlist[k][2] = radius
-            #pntlist[numsides - k][0] = 0
-            #pntlist[numsides - k][2] = radius * -1
-
-        #else:
-            #temptheta = 180 - totaltheta
-            #tempx = sin(temptheta) * radius
-            #tempz = cos(temptheta) * radius * -1
-            #pntlist[k][0] = tempx
-            #pntlist[k][2] = tempz
-            #pntlist[numsides - k][0] = tempx
-            #pntlist[numsides - k][2] = tempz * -1
-            #print "added vertex 2"
-            #print pntlist
 
     print "pointlist"
     for i in range(len(pntlist)):
         print pntlist[i]
 
-    #print pntlist
     return pntlist
 
 def add_box( polygons, x, y, z, width, height, depth ):
