@@ -1,8 +1,6 @@
 push
 move 250 250 0
-//rotate z -45
-rotate x -90
-//rotate y 135
-pyramid 4 50 50
+rotate x 90
+pyramid 6 50 50
 display
 save pyramid.png

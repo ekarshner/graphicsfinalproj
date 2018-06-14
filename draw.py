@@ -121,7 +121,7 @@ def add_pyramid(polygons, numsides, sidelength, height):
 def generate_pyramid(numsides, sidelength, height):
     pntlist = new_matrix(3,numsides)
 
-    theta = 2.0 * math.pi / numsides
+    theta = 1.0 * 360 / numsides
     radius = (sidelength / 2) / sin(theta / 2)
     if radius < 0:
             radius *= -1
@@ -142,11 +142,12 @@ def generate_pyramid(numsides, sidelength, height):
     k = 0
     totaltheta = 0
     #calculate and add base points to pointlist
-    while totaltheta < (2 * math.pi):
+    while totaltheta < (360):
         #print totaltheta
         #if totaltheta <= 90:
-        tempx = sin(totaltheta) * radius
-        tempz = cos(totaltheta) * radius
+        temptheta = math.pi / 180 * totaltheta
+        tempx = sin(temptheta) * radius
+        tempz = cos(temptheta) * radius
         pntlist[k][0] = tempx
         pntlist[k][2] = tempz
         totaltheta += theta
