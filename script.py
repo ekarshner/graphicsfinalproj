@@ -23,6 +23,7 @@ def first_pass( commands ):
     gotframes = False
     gotbase = False
     gotvary = False
+    basename = 'mark'
     for command in commands:
         print command
         c = command['op']
@@ -44,7 +45,6 @@ def first_pass( commands ):
             return
 
         if (gotframes and not gotbase):
-            basename = 'mark'
             print "you forgot your basename. Now it's 'mark'."
     return [num_frames, basename]
 """======== second_pass( commands ) ==========
@@ -166,6 +166,14 @@ def run(filename):
                 matrix_mult( stack[-1], tmp )
                 draw_polygons(tmp, screen, zbuffer, view, ambient, light, areflect, dreflect, sreflect)
                 tmp = []
+
+            elif c == 'pyramid':
+                add_pyramid(tmp, int(args[0]), args[1], args[2])
+                #reminder: args[0] is numsides, args[1] is sidelength, args[2] is height
+                matrix_mult( stack[-1], tmp )
+                draw_polygons(tmp, screen, zbuffer, view, ambient, light, areflect, dreflect, sreflect)
+                tmp = []
+
             elif c == 'sphere':
                 add_sphere(tmp,
                            args[0], args[1], args[2], args[3], step_3d)

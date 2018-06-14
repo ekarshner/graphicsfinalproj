@@ -14,41 +14,42 @@ tokens = (
     "AMBIENT",
     "TORUS",
     "SPHERE",
-    "BOX", 
-    "LINE", 
-    "MESH", 
-    "TEXTURE", 
-    "SET", 
-    "MOVE", 
-    "SCALE", 
-    "ROTATE", 
-    "BASENAME", 
-    "SAVE_KNOBS", 
-    "TWEEN", 
-    "FRAMES", 
-    "VARY", 
-    "PUSH", 
-    "POP", 
-    "SAVE", 
-    "GENERATE_RAYFILES", 
-    "SHADING", 
-    "SHADING_TYPE", 
-    "SET_KNOBS", 
-    "FOCAL", 
-    "DISPLAY", 
-    "SCREEN", 
-    "WEB", 
-    "CO"
+    "BOX",
+    "LINE",
+    "MESH",
+    "TEXTURE",
+    "SET",
+    "MOVE",
+    "SCALE",
+    "ROTATE",
+    "BASENAME",
+    "SAVE_KNOBS",
+    "TWEEN",
+    "FRAMES",
+    "VARY",
+    "PUSH",
+    "POP",
+    "SAVE",
+    "GENERATE_RAYFILES",
+    "SHADING",
+    "SHADING_TYPE",
+    "SET_KNOBS",
+    "FOCAL",
+    "DISPLAY",
+    "SCREEN",
+    "WEB",
+    "CO",
+    "PYRAMID"
 )
 
 reserved = {
-    "x" : "XYZ", 
-    "y" : "XYZ", 
-    "z" : "XYZ", 
-    "screen" : "SCREEN", 
+    "x" : "XYZ",
+    "y" : "XYZ",
+    "z" : "XYZ",
+    "screen" : "SCREEN",
     "light" : "LIGHT",
     "constants" : "CONSTANTS",
-    "save_coord_system" : "SAVE_COORDS", 
+    "save_coord_system" : "SAVE_COORDS",
     "camera" : "CAMERA",
     "ambient" : "AMBIENT",
     "torus" : "TORUS",
@@ -79,7 +80,8 @@ reserved = {
     "setknobs" : "SET_KNOBS",
     "focal" : "FOCAL",
     "display" : "DISPLAY",
-    "web" : "WEB"
+    "web" : "WEB",
+    "pyramid" :"PYRAMID"
 }
 
 t_ignore = " \t"
@@ -211,6 +213,11 @@ def p_command_box(p):
     if len(p) == 10 and isinstance(p[9], str):
           cmd['cs'] = p[9]
     cmd['args'] = p[arg_start:arg_start+6]
+    commands.append(cmd)
+
+def p_command_pyramid(p):
+    """command : PYRAMID NUMBER NUMBER NUMBER"""
+    cmd = {'op' : p[1], 'args':p[2:5]}
     commands.append(cmd)
 
 def p_command_line(p):

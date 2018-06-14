@@ -93,6 +93,92 @@ def draw_polygons( matrix, screen, zbuffer, view, ambient, light, areflect, dref
             #            screen, zbuffer, color)
         point+= 3
 
+def add_pyramid(polygons, numsides, sidelength, height):
+    #pointlist for base points
+    pntlist = generate_pyramid(numsides, sidelength, height)
+
+    #add the base and side polygons
+    for i in range(numsides - 1):
+        add_polygon(polygons, 0,0,0,
+                pntlist[i][0], 0, pntlist[i][2],
+                pntlist[i+1][0], 0, pntlist[i+1][2])
+
+        #add_polygon(polygons, 0,height,0,
+                #pntlist[i][0], 0, pntlist[i][2],
+                #pntlist[i+1][0], 0, pntlist[i+1][2])
+
+    add_polygon(polygons, 0,0,0,
+            pntlist[numsides - 1][0], 0, pntlist[numsides - 1][2],
+            pntlist[0][0], 0, pntlist[0][2])
+
+    #add_polygon(polygons, 0,height,0,
+            #pntlist[numsides - 1][0], 0, pntlist[numsides - 1][2],
+            #pntlist[0][0], 0, pntlist[0][2])
+    #for i in range(len(polygons)):
+        #print polygons[i]
+        #print '\n'
+
+def generate_pyramid(numsides, sidelength, height):
+    pntlist = new_matrix(3,numsides)
+
+    theta = 2.0 * math.pi / numsides
+    radius = (sidelength / 2) / sin(theta / 2)
+    if radius < 0:
+            radius *= -1
+    print radius
+
+    #adding first base point to pointlist
+    #pntlist[0][0] = radius
+    #pntlist[0][2] = 0
+
+    #adds opposite point from start if even number of sides
+    #if (numsides % 2 == 0):
+        #pntlist[numsides / 2][0] = radius * -1
+        #pntlist[numsides / 2][2] = 0
+
+    #print "initial pointlist"
+    #print pntlist
+
+    k = 0
+    totaltheta = 0
+    #calculate and add base points to pointlist
+    while totaltheta < (2 * math.pi):
+        #print totaltheta
+        #if totaltheta <= 90:
+        tempx = sin(totaltheta) * radius
+        tempz = cos(totaltheta) * radius
+        pntlist[k][0] = tempx
+        pntlist[k][2] = tempz
+        totaltheta += theta
+        k += 1
+        #pntlist[numsides - k][0] = tempx
+        #pntlist[numsides - k][2] = tempz * -1
+            #print "added vertex 1"
+            #print pntlist
+
+        #elif totaltheta == 90:
+            #pntlist[k][0] = 0
+            #pntlist[k][2] = radius
+            #pntlist[numsides - k][0] = 0
+            #pntlist[numsides - k][2] = radius * -1
+
+        #else:
+            #temptheta = 180 - totaltheta
+            #tempx = sin(temptheta) * radius
+            #tempz = cos(temptheta) * radius * -1
+            #pntlist[k][0] = tempx
+            #pntlist[k][2] = tempz
+            #pntlist[numsides - k][0] = tempx
+            #pntlist[numsides - k][2] = tempz * -1
+            #print "added vertex 2"
+            #print pntlist
+
+    print "pointlist"
+    for i in range(len(pntlist)):
+        print pntlist[i]
+
+    #print pntlist
+    return pntlist
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
