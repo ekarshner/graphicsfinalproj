@@ -103,17 +103,17 @@ def add_pyramid(polygons, numsides, sidelength, height):
                 pntlist[i][0], 0, pntlist[i][2],
                 pntlist[i+1][0], 0, pntlist[i+1][2])
 
-        #add_polygon(polygons, 0,height,0,
-                #pntlist[i][0], 0, pntlist[i][2],
-                #pntlist[i+1][0], 0, pntlist[i+1][2])
+        add_polygon(polygons, 0,height,0,
+                pntlist[i][0], 0, pntlist[i][2],
+                pntlist[i+1][0], 0, pntlist[i+1][2])
 
     add_polygon(polygons, 0,0,0,
             pntlist[numsides - 1][0], 0, pntlist[numsides - 1][2],
             pntlist[0][0], 0, pntlist[0][2])
 
-    #add_polygon(polygons, 0,height,0,
-            #pntlist[numsides - 1][0], 0, pntlist[numsides - 1][2],
-            #pntlist[0][0], 0, pntlist[0][2])
+    add_polygon(polygons, 0,height,0,
+            pntlist[numsides - 1][0], 0, pntlist[numsides - 1][2],
+            pntlist[0][0], 0, pntlist[0][2])
     #for i in range(len(polygons)):
         #print polygons[i]
         #print '\n'

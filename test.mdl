@@ -1,6 +1,24 @@
+//pentagonal pyramid
+push
+move 350 350 0
+rotate z 30
+rotate x 90
+pyramid 5 100 100
+pop
+
+//regular pyramid
+push
+move 100 100 0
+rotate z 30
+rotate x 45
+pyramid 4 100 100
+pop
+
+//hexagonal pyramid
 push
 move 250 250 0
-rotate x 90
-pyramid 6 50 50
+rotate z 30
+rotate x 45
+pyramid 6 100 100
 display
 save pyramid.png
